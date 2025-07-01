@@ -1,0 +1,281 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 9%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background-color: #000;
+}
+
+.logo {
+  font-size: 3rem;
+  color: red;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.logo:hover {
+  color: white;
+  text-shadow: 0 0 10px red;
+  transform: scale(1.1);
+}
+
+nav {
+  display: flex;
+  gap: 3rem;
+}
+
+nav a {
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: red;
+  border-bottom: 3px solid white;
+  transform: scale(1.1);
+}
+
+/* Home Section */
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 10rem 9% 5rem;
+  min-height: 100vh;
+}
+
+.home-img img {
+  width: 300px;
+  border-radius: 50%;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: growIn 1.5s ease-in-out;
+}
+
+.home-img img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 30px red;
+}
+
+@keyframes growIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.home-content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+  text-align: right;
+}
+
+.home-content h1 {
+  font-size: 4.5rem;
+}
+
+.home-content h3 {
+  font-size: 2.5rem;
+}
+
+.home-content span {
+  color: red;
+}
+
+.home-content p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+/* Typing Animation Text */
+#typed-text {
+  color: red;
+  font-weight: 600;
+  border-right: 2px solid red;
+  padding-right: 5px;
+  animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Social Icons */
+.social-icon {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.social-icon a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0.15rem solid red;
+  border-radius: 50%;
+  color: red;
+  font-size: 1.6rem;
+  transition: 0.3s ease-in-out;
+}
+
+.social-icon a:hover {
+  background-color: red;
+  color: black;
+  transform: scale(1.2) translateY(-3px);
+  box-shadow: 0 0 10px red;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background-color: black;
+  border-radius: 4rem;
+  color: red;
+  font-size: 1.6rem;
+  letter-spacing: 0.3rem;
+  border: 1px solid red;
+  transition: 0.3s ease-in-out;
+  margin-top: 2rem;
+}
+
+.btn:hover {
+  background-color: red;
+  color: black;
+  box-shadow: 0 0 10px red;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .home-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-icon {
+    justify-content: center;
+  }
+
+  .home-img img {
+    width: 70vw;
+  }
+}
+body.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode header {
+  background-color: #fff;
+}
+
+body.light-mode .logo {
+  color: black;
+}
+
+body.light-mode nav a {
+  color: black;
+  border-color: transparent;
+}
+
+body.light-mode nav a:hover,
+body.light-mode nav a.active {
+  color: red;
+  border-bottom: 3px solid red;
+}
+
+body.light-mode .social-icon a {
+  color: black;
+  border-color: black;
+}
+
+body.light-mode .social-icon a:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 10px black;
+}
+
+body.light-mode .btn {
+  color: black;
+  border-color: black;
+  background-color: white;
+}
+
+body.light-mode .btn:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 0 0 10px black;
+}
+#theme-toggle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  background-color: transparent;
+  border: 2px solid red;
+  color: red;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+#theme-toggle:hover {
+  background-color: red;
+  color: black;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px red;
+}

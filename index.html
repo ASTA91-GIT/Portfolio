@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MY PORTFOLIO</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <a href="main.jpg" class="logo">ASTA</a>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+      </nav>
+      <button id="theme-toggle" aria-label="Toggle Theme">
+  <i class="fas fa-moon"></i>
+</button>
+
+    </header>
+
+    <section class="home">
+      <div class="home-img">
+        <img src="main.jpg" alt="Main Image" />
+      </div>
+
+      <div class="home-content">
+        <h1>Hi, It's <span>ASTA</span></h1>
+        <h3 class="typing-text">I'm a <span id="typed-text"></span></h3>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+          facere quo illum eaque reprehenderit magnam accusantium necessitatibus
+          vel, veniam animi quasi est! Nam asperiores fugit eius nisi saepe
+          reiciendis quisquam!
+        </p>
+
+        <!-- Social Icons -->
+        <div class="social-icon">
+          <a href="https://github.com/ASTA91-GIT" target="_blank"
+            ><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ram-khandekar-a638ba359" target="_blank"
+            ><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="https://www.instagram.com/ram_k_72/" target="_blank"
+            ><i class="fa-brands fa-instagram"></i></a>
+        </div>
+
+        <!-- Contact Button -->
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+    </section>
+
+    <!-- ✅ Place Script HERE -->
+    <script>
+      const roles = [
+        "Software Developer",
+        "Web Developer",
+        "App Developer",
+        "Gamer",
+        "Designer"
+      ];
+
+      let index = 0;
+      let charIndex = 0;
+      const typingSpeed = 100;
+      const erasingSpeed = 50;
+      const delayBetween = 1500;
+
+      const typedText = document.getElementById("typed-text");
+
+      function type() {
+        if (charIndex < roles[index].length) {
+          typedText.textContent += roles[index].charAt(charIndex);
+          charIndex++;
+          setTimeout(type, typingSpeed);
+        } else {
+          setTimeout(erase, delayBetween);
+        }
+      }
+
+      function erase() {
+        if (charIndex > 0) {
+          typedText.textContent = roles[index].substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(erase, erasingSpeed);
+        } else {
+          index = (index + 1) % roles.length;
+          setTimeout(type, typingSpeed);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        if (roles.length) setTimeout(type, delayBetween);
+      });
+// Theme Toggle Functionality
+      const toggleBtn = document.getElementById("theme-toggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+
+  const icon = toggleBtn.querySelector("i");
+  icon.classList.toggle("fa-moon");
+  icon.classList.toggle("fa-sun");
+});
+
+    </script>
+  </body>
+</html>
