@@ -22,9 +22,8 @@
         <a href="#">Contact</a>
       </nav>
       <button id="theme-toggle" aria-label="Toggle Theme">
-  <i class="fas fa-moon"></i>
-</button>
-
+        <i class="fas fa-moon"></i>
+      </button>
     </header>
 
     <section class="home">
@@ -37,21 +36,31 @@
         <h3 class="typing-text">I'm a <span id="typed-text"></span></h3>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-          facere quo illum eaque reprehenderit magnam accusantium necessitatibus
-          vel, veniam animi quasi est! Nam asperiores fugit eius nisi saepe
-          reiciendis quisquam!
+          I'm a self-taught web developer with a strong passion for building
+          beautiful and functional websites. I love turning complex problems
+          into simple, elegant solutions using clean code and creative design.
+          Whether it's crafting a responsive layout, adding smooth animations,
+          or optimizing performance — I'm always eager to learn and improve.
+        </p>
+        <p>
+          This portfolio is a glimpse into my journey and the projects I've
+          built along the way. Dive in and explore what I’ve been working on!
         </p>
 
         <!-- Social Icons -->
         <div class="social-icon">
           <a href="https://github.com/ASTA91-GIT" target="_blank"
-            ><i class="fa-brands fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/ram-khandekar-a638ba359" target="_blank"
-            ><i class="fa-brands fa-linkedin"></i></a>
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/ram-khandekar-a638ba359"
+            target="_blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
           <a href="#"><i class="fa-brands fa-twitter"></i></a>
           <a href="https://www.instagram.com/ram_k_72/" target="_blank"
-            ><i class="fa-brands fa-instagram"></i></a>
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
         </div>
 
         <!-- Contact Button -->
@@ -66,7 +75,7 @@
         "Web Developer",
         "App Developer",
         "Gamer",
-        "Designer"
+        "Designer",
       ];
 
       let index = 0;
@@ -101,17 +110,16 @@
       document.addEventListener("DOMContentLoaded", () => {
         if (roles.length) setTimeout(type, delayBetween);
       });
-// Theme Toggle Functionality
+      // Theme Toggle Functionality
       const toggleBtn = document.getElementById("theme-toggle");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
 
-  const icon = toggleBtn.querySelector("i");
-  icon.classList.toggle("fa-moon");
-  icon.classList.toggle("fa-sun");
-});
-
+        const icon = toggleBtn.querySelector("i");
+        icon.classList.toggle("fa-moon");
+        icon.classList.toggle("fa-sun");
+      });
     </script>
   </body>
 </html>
