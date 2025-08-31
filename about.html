@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASTA - About Me</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Additional styles for about page */
+        .about-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(255,0,0,0.1) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 9% 4rem;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('aboutus.png') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .about-hero h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-hero p {
+            font-size: 1.8rem;
+            color: #ccc;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .about-content {
+            padding: 6rem 9%;
+            background: #000;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-top: 4rem;
+        }
+
+        .about-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .about-text h3 {
+            font-size: 2.4rem;
+            color: red;
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .skills-section {
+            padding: 6rem 9%;
+            background: #111;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .skill-category {
+            background: #000;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: red;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: red;
+            margin-bottom: 2rem;
+        }
+
+        .skill-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-list li {
+            font-size: 1.4rem;
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            background: rgba(255, 0, 0, 0.1);
+            color: white;
+        }
+
+        .experience-section {
+            padding: 6rem 9%;
+            background: #000;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: red;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-content {
+            background: #111;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: red;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+        }
+
+        .timeline-date {
+            font-size: 1.4rem;
+            color: red;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .education-section {
+            padding: 6rem 9%;
+            background: #111;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .education-card {
+            background: #000;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: red;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .education-icon {
+            font-size: 4rem;
+            color: red;
+            margin-bottom: 2rem;
+        }
+
+        .education-degree {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .education-school {
+            font-size: 1.6rem;
+            color: red;
+            margin-bottom: 1rem;
+        }
+
+        .education-year {
+            font-size: 1.4rem;
+            color: #ccc;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Light mode adjustments */
+        body.light-mode .about-hero {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,0,0,0.1) 100%);
+        }
+
+        body.light-mode .about-content {
+            background: white;
+        }
+
+        body.light-mode .about-text {
+            color: #666;
+        }
+
+        body.light-mode .skills-section {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .skill-category {
+            background: white;
+            border-color: #ddd;
+        }
+
+        body.light-mode .skill-list li {
+            color: #666;
+        }
+
+        body.light-mode .experience-section {
+            background: white;
+        }
+
+        body.light-mode .timeline-content {
+            background: #f5f5f5;
+            border-color: #ddd;
+        }
+
+        body.light-mode .timeline-description {
+            color: #666;
+        }
+
+        body.light-mode .education-section {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .education-card {
+            background: white;
+            border-color: #ddd;
+        }
+
+        body.light-mode .education-year {
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content::before {
+                left: -35px !important;
+            }
+
+            .about-hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">ASTA</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="about.html" class="active">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>About <span style="color: red;">Me</span></h1>
+            <p>Passionate developer with a love for creating innovative digital solutions</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 2rem; color: white;">
+            My <span style="color: red;">Story</span>
+        </h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Who I Am</h3>
+                <p>
+                    I'm a self-taught web developer with a deep passion for technology and innovation. 
+                    My journey in the world of programming began with curiosity and has evolved into 
+                    a professional pursuit of creating meaningful digital experiences.
+                </p>
+                <p>
+                    I believe in the power of clean code, user-centered design, and continuous learning. 
+                    Every project I work on is an opportunity to push boundaries and create something 
+                    that not only meets requirements but exceeds expectations.
+                </p>
+                <h3>My Approach</h3>
+                <p>
+                    I approach every project with a focus on understanding the user's needs first. 
+                    Whether it's a simple website or a complex application, I ensure that the final 
+                    product is not just functional but also intuitive and enjoyable to use.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="aboutus.png" alt="ASTA Profile" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 2rem; color: white;">
+            My <span style="color: red;">Skills</span>
+        </h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="skill-title">Frontend</h3>
+                <ul class="skill-list">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>Responsive Design</li>
+                    <li>Basic JavaScript</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <div class="skill-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="skill-title">Programming</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>C Programming</li>
+                    <li>Basic Algorithms</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <div class="skill-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="skill-title">Automation</h3>
+                <ul class="skill-list">
+                    <li>n8n (Learning)</li>
+                    <li>Workflow Automation</li>
+                    <li>API Integration</li>
+                    <li>Data Processing</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <div class="skill-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="skill-title">Tools</h3>
+                <ul class="skill-list">
+                    <li>VS Code</li>
+                    <li>Git & GitHub</li>
+                    <li>Command Line</li>
+                    <li>Basic Linux</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 2rem; color: white;">
+            My <span style="color: red;">Experience</span>
+        </h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 - Present</div>
+                    <h3 class="timeline-title">Student Developer</h3>
+                    <p class="timeline-description">
+                        Currently learning web development and programming fundamentals. 
+                        Working on personal projects to build a strong foundation in HTML, CSS, Python, and C.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - 2024</div>
+                    <h3 class="timeline-title">Programming Student</h3>
+                    <p class="timeline-description">
+                        Started learning programming basics with C language and Python. 
+                        Completed college coursework and began exploring web development.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - 2023</div>
+                    <h3 class="timeline-title">Computer Science Student</h3>
+                    <p class="timeline-description">
+                        Began my journey in computer science, learning fundamental concepts 
+                        and discovering my passion for programming and problem-solving.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 2rem; color: white;">
+            My <span style="color: red;">Education</span>
+        </h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="education-degree">Bachelor's in Computer Science</h3>
+                <p class="education-school">University Name</p>
+                <p class="education-year">2020 - 2024</p>
+            </div>
+            
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="education-degree">Web Development Certification</h3>
+                <p class="education-school">Online Platform</p>
+                <p class="education-year">2022</p>
+            </div>
+            
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="education-degree">UI/UX Design Course</h3>
+                <p class="education-school">Design Institute</p>
+                <p class="education-year">2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #000; padding: 3rem 9%; text-align: center; border-top: 1px solid #333;">
+        <div class="social-icon" style="justify-content: center; margin-bottom: 2rem;">
+            <a href="https://github.com/ASTA91-GIT" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ram-khandekar-a638ba359" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/ram_k_72/" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        <p style="color: #ccc; font-size: 1.4rem;">
+            © 2024 ASTA. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: red;"></i> and passion
+        </p>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const toggleBtn = document.getElementById("theme-toggle");
+
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+
+            const icon = toggleBtn.querySelector("i");
+            icon.classList.toggle("fa-moon");
+            icon.classList.toggle("fa-sun");
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements for animation
+        document.querySelectorAll('.skill-category, .timeline-item, .education-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

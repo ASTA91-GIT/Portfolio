@@ -279,3 +279,68 @@ body.light-mode .btn:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px red;
 }
+
+
+
+/* 🌑 ABOUT SECTION STYLING */
+#about {
+  background-color: #000; /* Black background */
+  padding: 80px 20px;
+  color: #f1f1f1;
+}
+
+#about h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+#about h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #00f0ff;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+}
+
+.about-image {
+  flex: 1;
+  text-align: center;
+}
+
+.profile-pic {
+  width: 280px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.1);
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 255, 255, 0.3);
+}
+
+.about-text {
+  flex: 2;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #dcdcdc;
+  padding: 0 20px;
+}

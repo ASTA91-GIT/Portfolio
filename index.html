@@ -1,125 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>MY PORTFOLIO</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+<head>
+    <title>ASTA - Welcome to My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <!-- Font Awesome Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Additional styles for home page */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(255,0,0,0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-  <body>
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('main.jpg') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 6rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 2.4rem;
+            color: red;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-description {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 4rem;
+            color: #ccc;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .cta-btn {
+            padding: 1.5rem 3rem;
+            font-size: 1.6rem;
+            border: 2px solid red;
+            border-radius: 5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn.primary {
+            background: red;
+            color: black;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: red;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+        }
+
+        .cta-btn.primary:hover {
+            background: #cc0000;
+            border-color: #cc0000;
+        }
+
+        .cta-btn.secondary:hover {
+            background: red;
+            color: black;
+        }
+
+        .features-section {
+            padding: 8rem 9%;
+            background: #111;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: #000;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            border: 1px solid #333;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,0,0,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: red;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            color: red;
+            margin-bottom: 2rem;
+        }
+
+        .feature-title {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .feature-description {
+            font-size: 1.6rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            padding: 6rem 9%;
+            background: #000;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: red;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-size: 1.8rem;
+            color: #ccc;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Light mode adjustments */
+        body.light-mode .hero-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,0,0,0.1) 100%);
+        }
+
+        body.light-mode .features-section {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .feature-card {
+            background: white;
+            border-color: #ddd;
+        }
+
+        body.light-mode .feature-description {
+            color: #666;
+        }
+
+        body.light-mode .stats-section {
+            background: white;
+        }
+
+        body.light-mode .stat-label {
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1.6rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
     <header>
-      <a href="main.jpg" class="logo">ASTA</a>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Projects</a>
-        <a href="#">Contact</a>
-      </nav>
-      <button id="theme-toggle" aria-label="Toggle Theme">
-        <i class="fas fa-moon"></i>
-      </button>
+        <a href="index.html" class="logo">ASTA</a>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
 
-    <section class="home">
-      <div class="home-img">
-        <img src="main.jpg" alt="Main Image" />
-      </div>
-
-      <div class="home-content">
-        <h1>Hi, It's <span>ASTA</span></h1>
-        <h3 class="typing-text">I'm a <span id="typed-text"></span></h3>
-
-        <p>
-          I'm a self-taught web developer with a strong passion for building
-          beautiful and functional websites. I love turning complex problems
-          into simple, elegant solutions using clean code and creative design.
-          Whether it's crafting a responsive layout, adding smooth animations,
-          or optimizing performance — I'm always eager to learn and improve.
-        </p>
-        <p>
-          This portfolio is a glimpse into my journey and the projects I've
-          built along the way. Dive in and explore what I’ve been working on!
-        </p>
-
-        <!-- Social Icons -->
-        <div class="social-icon">
-          <a href="https://github.com/ASTA91-GIT" target="_blank"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/ram-khandekar-a638ba359"
-            target="_blank"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="https://www.instagram.com/ram_k_72/" target="_blank"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to <span style="color: red;">ASTA</span></h1>
+            <h2 class="hero-subtitle">Full-Stack Developer & Creative Problem Solver</h2>
+            <p class="hero-description">
+                Transforming ideas into digital reality with clean code, innovative design, and cutting-edge technology. 
+                Passionate about creating user experiences that make a difference.
+            </p>
+            <div class="cta-buttons">
+                <a href="portfolio.html" class="cta-btn primary">
+                    <i class="fas fa-eye"></i> View Portfolio
+                </a>
+                <a href="about.html" class="cta-btn secondary">
+                    <i class="fas fa-user"></i> About Me
+                </a>
+            </div>
         </div>
-
-        <!-- Contact Button -->
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
     </section>
 
-    <!-- ✅ Place Script HERE -->
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 2rem; color: white;">
+            What I <span style="color: red;">Do</span>
+        </h2>
+        <div class="features-grid">
+            <div class="feature-card floating">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="feature-title">Web Development</h3>
+                <p class="feature-description">
+                    Building responsive, modern websites with clean code and optimal performance. 
+                    From simple landing pages to complex web applications.
+                </p>
+            </div>
+            
+            <div class="feature-card floating" style="animation-delay: 0.5s;">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">App Development</h3>
+                <p class="feature-description">
+                    Creating mobile applications that provide seamless user experiences 
+                    across different platforms and devices.
+                </p>
+            </div>
+            
+            <div class="feature-card floating" style="animation-delay: 1s;">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="feature-title">UI/UX Design</h3>
+                <p class="feature-description">
+                    Designing intuitive and beautiful user interfaces that enhance 
+                    user engagement and satisfaction.
+                </p>
+            </div>
+            
+            <div class="feature-card floating" style="animation-delay: 1.5s;">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3 class="feature-title">Gaming</h3>
+                <p class="feature-description">
+                    Passionate gamer with deep understanding of game mechanics, 
+                    user experience, and interactive design principles.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 style="font-size: 4rem; margin-bottom: 2rem; color: white;">
+            My <span style="color: red;">Numbers</span>
+        </h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: 6rem 9%; background: #111; text-align: center;">
+        <h2 style="font-size: 4rem; margin-bottom: 2rem; color: white;">
+            Ready to <span style="color: red;">Start</span> Something Amazing?
+        </h2>
+        <p style="font-size: 1.8rem; color: #ccc; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Let's collaborate to bring your vision to life. Whether you need a website, 
+            mobile app, or creative design solution, I'm here to help.
+        </p>
+        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+            <a href="contact.html" class="btn">
+                <i class="fas fa-envelope"></i> Get In Touch
+            </a>
+            <a href="projects.html" class="btn">
+                <i class="fas fa-folder"></i> View Projects
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #000; padding: 3rem 9%; text-align: center; border-top: 1px solid #333;">
+        <div class="social-icon" style="justify-content: center; margin-bottom: 2rem;">
+            <a href="https://github.com/ASTA91-GIT" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ram-khandekar-a638ba359" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/ram_k_72/" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        <p style="color: #ccc; font-size: 1.4rem;">
+            © 2024 ASTA. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: red;"></i> and passion
+        </p>
+    </footer>
+
     <script>
-      const roles = [
-        "Software Developer",
-        "Web Developer",
-        "App Developer",
-        "Gamer",
-        "Designer",
-      ];
+        // Theme Toggle Functionality
+        const toggleBtn = document.getElementById("theme-toggle");
 
-      let index = 0;
-      let charIndex = 0;
-      const typingSpeed = 100;
-      const erasingSpeed = 50;
-      const delayBetween = 1500;
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
 
-      const typedText = document.getElementById("typed-text");
+            const icon = toggleBtn.querySelector("i");
+            icon.classList.toggle("fa-moon");
+            icon.classList.toggle("fa-sun");
+        });
 
-      function type() {
-        if (charIndex < roles[index].length) {
-          typedText.textContent += roles[index].charAt(charIndex);
-          charIndex++;
-          setTimeout(type, typingSpeed);
-        } else {
-          setTimeout(erase, delayBetween);
-        }
-      }
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-      function erase() {
-        if (charIndex > 0) {
-          typedText.textContent = roles[index].substring(0, charIndex - 1);
-          charIndex--;
-          setTimeout(erase, erasingSpeed);
-        } else {
-          index = (index + 1) % roles.length;
-          setTimeout(type, typingSpeed);
-        }
-      }
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-      document.addEventListener("DOMContentLoaded", () => {
-        if (roles.length) setTimeout(type, delayBetween);
-      });
-      // Theme Toggle Functionality
-      const toggleBtn = document.getElementById("theme-toggle");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-      toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light-mode");
-
-        const icon = toggleBtn.querySelector("i");
-        icon.classList.toggle("fa-moon");
-        icon.classList.toggle("fa-sun");
-      });
+        // Observe all feature cards and stat items
+        document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
     </script>
-  </body>
+</body>
 </html>

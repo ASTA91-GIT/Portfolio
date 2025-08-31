@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASTA - My Projects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Additional styles for projects page */
+        .projects-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(255,0,0,0.1) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 9% 4rem;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('main.jpg') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .projects-hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .projects-hero h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .projects-hero p {
+            font-size: 1.8rem;
+            color: #ccc;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .filter-section {
+            padding: 4rem 9% 2rem;
+            background: #000;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .filter-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid red;
+            color: red;
+            border-radius: 2.5rem;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: red;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .projects-grid {
+            padding: 4rem 9%;
+            background: #111;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: #000;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: red;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #333, #666);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,0,0,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover .project-image::before {
+            left: 100%;
+        }
+
+        .project-image i {
+            font-size: 4rem;
+            color: red;
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1.4rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 0, 0, 0.1);
+            color: red;
+            border-radius: 1.5rem;
+            font-size: 1.2rem;
+            border: 1px solid red;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.8rem 1.5rem;
+            background: red;
+            color: black;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            color: red;
+            border: 1px solid red;
+        }
+
+        .project-link.secondary:hover {
+            background: red;
+            color: black;
+        }
+
+        .featured-section {
+            padding: 6rem 9%;
+            background: #000;
+            text-align: center;
+        }
+
+        .featured-project {
+            background: #111;
+            border-radius: 2rem;
+            padding: 4rem;
+            border: 2px solid red;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,0,0,0.05), transparent);
+            z-index: 1;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .featured-title {
+            font-size: 3rem;
+            color: red;
+            margin-bottom: 2rem;
+        }
+
+        .featured-description {
+            font-size: 1.8rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-tech {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-tech .tech-tag {
+            font-size: 1.4rem;
+            padding: 0.8rem 1.5rem;
+        }
+
+        .featured-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .featured-link {
+            padding: 1.2rem 2.5rem;
+            background: red;
+            color: black;
+            border-radius: 2.5rem;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .featured-link:hover {
+            background: #cc0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+        }
+
+        .featured-link.secondary {
+            background: transparent;
+            color: red;
+            border: 2px solid red;
+        }
+
+        .featured-link.secondary:hover {
+            background: red;
+            color: black;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Light mode adjustments */
+        body.light-mode .projects-hero {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,0,0,0.1) 100%);
+        }
+
+        body.light-mode .filter-section {
+            background: white;
+        }
+
+        body.light-mode .projects-grid {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .project-card {
+            background: white;
+            border-color: #ddd;
+        }
+
+        body.light-mode .project-description {
+            color: #666;
+        }
+
+        body.light-mode .featured-section {
+            background: white;
+        }
+
+        body.light-mode .featured-project {
+            background: #f5f5f5;
+        }
+
+        body.light-mode .featured-description {
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects-hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 5%;
+            }
+
+            .featured-project {
+                padding: 2rem;
+            }
+
+            .featured-title {
+                font-size: 2.5rem;
+            }
+
+            .featured-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">ASTA</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="about.html">About</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+
+    <!-- Projects Hero Section -->
+    <section class="projects-hero">
+        <div class="projects-hero-content">
+            <h1>My <span style="color: red;">Projects</span></h1>
+            <p>Explore my latest work and creative solutions</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <h2 style="font-size: 3rem; margin-bottom: 2rem; color: white;">
+            Filter <span style="color: red;">Projects</span>
+        </h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="mobile">Programming</button>
+            <button class="filter-btn" data-filter="design">Python Projects</button>
+        </div>
+    </section>
+
+            <!-- Featured Project -->
+        <section class="featured-section">
+            <h2 style="font-size: 4rem; margin-bottom: 2rem; color: white;">
+                Featured <span style="color: red;">Project</span>
+            </h2>
+            <div class="featured-project">
+                <div class="featured-content">
+                    <h3 class="featured-title">Personal Portfolio Website</h3>
+                    <p class="featured-description">
+                        A modern, responsive portfolio website showcasing my skills and projects. 
+                        Built with HTML, CSS, and JavaScript, featuring dark/light mode toggle, 
+                        smooth animations, and mobile-responsive design.
+                    </p>
+                    <div class="featured-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Responsive Design</span>
+                        <span class="tech-tag">Font Awesome</span>
+                    </div>
+                    <div class="featured-links">
+                        <a href="https://asta91-git.github.io/portfolio" class="featured-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/ASTA91-GIT/portfolio" class="featured-link secondary">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid" id="projects-grid">
+        <!-- Web Development Projects -->
+        <div class="project-card" data-category="web">
+            <div class="project-image">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Personal Portfolio</h3>
+                <p class="project-description">
+                    A responsive portfolio website showcasing my skills and projects 
+                    with modern design and smooth animations.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://asta91-git.github.io/portfolio" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio" class="project-link secondary">Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="web">
+            <div class="project-image">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Web Calculator</h3>
+                <p class="project-description">
+                    A modern web-based calculator with responsive design, keyboard support, 
+                    and smooth animations.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">DOM</span>
+                </div>
+                <div class="project-links">
+                    <a href="projects/calculator.html" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio/tree/main/projects" class="project-link secondary">Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programming Projects -->
+        <div class="project-card" data-category="mobile">
+            <div class="project-image">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Number Guessing Game</h3>
+                <p class="project-description">
+                    A simple number guessing game built with Python, featuring 
+                    random number generation and user input validation.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Random Module</span>
+                    <span class="tech-tag">User Input</span>
+                    <span class="tech-tag">Loops</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/number_guessing_game.py" class="project-link">View Code</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio/tree/main/projects" class="project-link secondary">All Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="mobile">
+            <div class="project-image">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">C Calculator</h3>
+                <p class="project-description">
+                    A basic calculator program written in C language with 
+                    arithmetic operations and error handling.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">C Programming</span>
+                    <span class="tech-tag">Functions</span>
+                    <span class="tech-tag">Switch Case</span>
+                    <span class="tech-tag">Input/Output</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/simple_calculator.c" class="project-link">View Code</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio/tree/main/projects" class="project-link secondary">All Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Python Projects -->
+        <div class="project-card" data-category="design">
+            <div class="project-image">
+                <i class="fas fa-list-check"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Todo List Manager</h3>
+                <p class="project-description">
+                    A comprehensive Python todo list application with task management, 
+                    priority levels, and data persistence using JSON.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JSON</span>
+                    <span class="tech-tag">File I/O</span>
+                    <span class="tech-tag">OOP</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/todo_list.py" class="project-link">View Code</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio/tree/main/projects" class="project-link secondary">All Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="design">
+            <div class="project-image">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Learning Projects</h3>
+                <p class="project-description">
+                    Various small projects created while learning programming fundamentals 
+                    including basic algorithms and problem-solving exercises.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">C Programming</span>
+                    <span class="tech-tag">Algorithms</span>
+                    <span class="tech-tag">Problem Solving</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/ASTA91-GIT" class="project-link">GitHub</a>
+                    <a href="https://github.com/ASTA91-GIT/portfolio/tree/main/projects" class="project-link secondary">Portfolio Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #000; padding: 3rem 9%; text-align: center; border-top: 1px solid #333;">
+        <div class="social-icon" style="justify-content: center; margin-bottom: 2rem;">
+            <a href="https://github.com/ASTA91-GIT" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ram-khandekar-a638ba359" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/ram_k_72/" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        <p style="color: #ccc; font-size: 1.4rem;">
+            © 2024 ASTA. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: red;"></i> and passion
+        </p>
+    </footer>
+
+    <script>
+        // Theme Toggle Functionality
+        const toggleBtn = document.getElementById("theme-toggle");
+
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+
+            const icon = toggleBtn.querySelector("i");
+            icon.classList.toggle("fa-moon");
+            icon.classList.toggle("fa-sun");
+        });
+
+        // Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeInUp 0.6s ease-out';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards for animation
+        document.querySelectorAll('.project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
