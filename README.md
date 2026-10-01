@@ -119,7 +119,7 @@ I am always open to discussing new opportunities, collaborations, hackathons, or
 - 💼 **LinkedIn**: [linkedin.com/in/ram-khandekar-a638ba359](https://www.linkedin.com/in/ram-khandekar-a638ba359)
 - 🐙 **GitHub**: [@ASTA91-GIT](https://github.com/ASTA91-GIT)
 - 📧 **Email**: [ramkhandekar899@gmail.com](mailto:ramkhandekar899@gmail.com)
-- 🌐 **Portfolio**: [asta91-git.github.io/portfolio](https://asta91-git.github.io/portfolio)
+- 🌐 **Portfolio**: [asta91-git.github.io/portfolio](https://asta-ram.vercel.app/)
 
 ---
 
