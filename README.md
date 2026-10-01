@@ -1,6 +1,6 @@
 <div align="center">
 
-# 👋 Hi, I'm Purva Patil
+# 👋 Hi
 
 <a href="https://readme-typing-svg.demolab.com/">
   <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&weight=600&size=24&pause=1000&color=FF3333&center=true&vCenter=true&random=false&width=620&height=65&lines=Computer+Engineering+Student;AI%2FML+%E2%80%A2+Cybersecurity+%E2%80%A2+Full-Stack;Building+intelligent+%26+secure+applications;Turning+ideas+into+real-world+solutions" alt="Typing SVG" />
