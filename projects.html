@@ -99,6 +99,8 @@
             border: 1px solid #333;
             transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -116,6 +118,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .project-image::before {
@@ -141,19 +144,65 @@
 
         .project-content {
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .project-title {
             font-size: 2rem;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.4rem;
+            color: red;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
         }
 
         .project-description {
             font-size: 1.4rem;
             color: #ccc;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
             margin-bottom: 2rem;
+        }
+
+        .features-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.8rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-list li {
+            font-size: 1.3rem;
+            color: #ccc;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            color: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
         }
 
         .project-tech {
@@ -175,6 +224,8 @@
         .project-links {
             display: flex;
             gap: 1rem;
+            margin-top: auto;
+            padding-top: 1rem;
         }
 
         .project-link {
@@ -309,10 +360,32 @@
             }
         }
 
+        /* Project Card Glow */
+
+        /* Target animation for project cards clicked from map */
+        .project-card:target {
+            animation: targetGlow 2s ease-out;
+            scroll-margin-top: 100px;
+        }
+
+        @keyframes targetGlow {
+            0% {
+                border-color: red;
+                box-shadow: 0 0 35px rgba(255, 0, 0, 0.9);
+                transform: translateY(-8px);
+            }
+            100% {
+                border-color: #333;
+                box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+                transform: translateY(0);
+            }
+        }
+
         /* Light mode adjustments */
         body.light-mode .projects-hero {
             background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,0,0,0.1) 100%);
         }
+
 
         body.light-mode .filter-section {
             background: white;
@@ -327,7 +400,16 @@
             border-color: #ddd;
         }
 
+        body.light-mode .project-title,
+        body.light-mode .features-title {
+            color: #111;
+        }
+
         body.light-mode .project-description {
+            color: #666;
+        }
+
+        body.light-mode .features-list li {
             color: #666;
         }
 
@@ -348,6 +430,8 @@
             .projects-hero h1 {
                 font-size: 3.5rem;
             }
+
+
 
             .filter-buttons {
                 flex-direction: column;
@@ -383,7 +467,7 @@
         <a href="index.html" class="logo">ASTA</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="portfolio.html">Portfolio</a>
+            <a href="index.html">Portfolio</a>
             <a href="about.html">About</a>
             <a href="projects.html" class="active">Projects</a>
             <a href="contact.html">Contact</a>
@@ -446,145 +530,231 @@
             </div>
         </section>
 
+
+
     <!-- Projects Grid -->
     <section class="projects-grid" id="projects-grid">
-        <!-- Web Development Projects -->
-        <div class="project-card" data-category="web">
+        <!-- Project 1: NEXUS -->
+        <div class="project-card" id="project-nexus" data-category="web">
             <div class="project-image">
-                <i class="fas fa-globe"></i>
+                <i class="fas fa-network-wired"></i>
             </div>
             <div class="project-content">
-                <h3 class="project-title">Personal Portfolio</h3>
+                <h3 class="project-title">NEXUS</h3>
+                <p class="project-subtitle">AI-Powered Criminal Network Analysis System</p>
                 <p class="project-description">
-                    A responsive portfolio website showcasing my skills and projects 
-                    with modern design and smooth animations.
+                    NEXUS is an AI-powered criminal network analysis platform designed to transform fragmented investigation data into connected intelligence. It allows investigators to ingest documents and extract important entities such as people, organizations, locations, and other relevant information. The platform cleans, normalizes, validates, and deduplicates the extracted data before connecting related entities into an interactive intelligence network.
                 </p>
+                <p class="project-description">
+                    NEXUS provides relationship mapping, interactive 3D network visualization, timeline analysis, and geo-analysis to help users understand connections between entities and events. It also includes a Data Quality & Intelligence Engine that improves the reliability and consistency of investigation data.
+                </p>
+                <div class="project-features">
+                    <h4 class="features-title">Features</h4>
+                    <ul class="features-list">
+                        <li>AI-powered entity extraction</li>
+                        <li>Entity deduplication and normalization</li>
+                        <li>Relationship mapping</li>
+                        <li>Interactive 3D network visualization</li>
+                        <li>Timeline analysis</li>
+                        <li>Geo-analysis</li>
+                        <li>Document ingestion and processing</li>
+                        <li>Data quality analysis</li>
+                        <li>Investigation intelligence dashboard</li>
+                    </ul>
+                </div>
                 <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Responsive</span>
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Hugging Face</span>
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">React Flow</span>
+                    <span class="tech-tag">MapLibre</span>
+                    <span class="tech-tag">Docker</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://asta91-git.github.io/portfolio" class="project-link">Live Demo</a>
-                    <a href="https://github.com/ASTA91-GIT/portfolio" class="project-link secondary">Code</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT" class="project-link secondary" target="_blank">View Code</a>
                 </div>
             </div>
         </div>
 
-        <div class="project-card" data-category="web">
+        <!-- Project 2: SCAM DETECTOR -->
+        <div class="project-card" id="project-scam-detector" data-category="design">
             <div class="project-image">
-                <i class="fas fa-calculator"></i>
+                <i class="fas fa-user-shield"></i>
             </div>
             <div class="project-content">
-                <h3 class="project-title">Web Calculator</h3>
+                <h3 class="project-title">SCAM DETECTOR</h3>
+                <p class="project-subtitle">AI-Powered Scam & Fraud Detection Platform</p>
                 <p class="project-description">
-                    A modern web-based calculator with responsive design, keyboard support, 
-                    and smooth animations.
+                    Scam Detector is an AI-powered platform designed to analyze suspicious documents and information to identify potential scams and fraudulent activity. The system processes submitted content and generates a structured risk assessment containing a risk score, confidence level, classification, and an executive summary.
                 </p>
+                <p class="project-description">
+                    The platform is designed to make scam analysis easier to understand by providing explainable results instead of simply returning a prediction. It can also retrieve and display relevant company information, helping users investigate organizations associated with suspicious documents or claims.
+                </p>
+                <div class="project-features">
+                    <h4 class="features-title">Features</h4>
+                    <ul class="features-list">
+                        <li>AI-powered scam detection</li>
+                        <li>Document analysis</li>
+                        <li>Fraud and scam classification</li>
+                        <li>Risk score generation</li>
+                        <li>Confidence assessment</li>
+                        <li>Executive summaries</li>
+                        <li>Explainable AI results</li>
+                        <li>Company information lookup</li>
+                        <li>Suspicious entity identification</li>
+                        <li>Case-based investigation</li>
+                    </ul>
+                </div>
                 <div class="project-tech">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">DOM</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">Document Processing</span>
                 </div>
                 <div class="project-links">
-                    <a href="projects/calculator.html" class="project-link">Live Demo</a>
-                    <a href="https://github.com/ASTA91-GIT/Web-calculator" class="project-link secondary">Code</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT" class="project-link secondary" target="_blank">View Code</a>
                 </div>
             </div>
         </div>
 
-        <!-- Programming Projects -->
-        <div class="project-card" data-category="mobile">
+        <!-- Project 3: SENTINEL -->
+        <div class="project-card" id="project-sentinel" data-category="mobile">
+            <div class="project-image">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">SENTINEL</h3>
+                <p class="project-subtitle">Intelligent Security Analysis Platform</p>
+                <p class="project-description">
+                    SENTINEL is an intelligent security analysis platform designed to help users analyze information, detect suspicious patterns, and generate structured security intelligence. The platform combines automated data processing with AI-assisted analysis to identify potential threats and anomalies.
+                </p>
+                <p class="project-description">
+                    It provides a centralized interface for security analysis, allowing users to process information, identify relevant patterns, and visualize the resulting intelligence. The goal of SENTINEL is to reduce manual analysis effort and make security investigations faster and more organized.
+                </p>
+                <div class="project-features">
+                    <h4 class="features-title">Features</h4>
+                    <ul class="features-list">
+                        <li>Intelligent security analysis</li>
+                        <li>Threat detection</li>
+                        <li>Anomaly detection</li>
+                        <li>Automated data processing</li>
+                        <li>Pattern identification</li>
+                        <li>AI-assisted investigation</li>
+                        <li>Security intelligence dashboard</li>
+                        <li>Structured investigation results</li>
+                        <li>Interactive data visualization</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Data Analysis</span>
+                    <span class="tech-tag">REST APIs</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT" class="project-link secondary" target="_blank">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4: POKEDEX -->
+        <div class="project-card" id="project-pokedex" data-category="web">
             <div class="project-image">
                 <i class="fas fa-gamepad"></i>
             </div>
             <div class="project-content">
-                <h3 class="project-title">Number Guessing Game</h3>
+                <h3 class="project-title">POKEDEX</h3>
+                <p class="project-subtitle">Interactive Pokémon Explorer</p>
                 <p class="project-description">
-                    A simple number guessing game built with Python, featuring 
-                    random number generation and user input validation.
+                    Pokedex is an interactive web application that allows users to explore and discover Pokémon through a clean and responsive interface. The application retrieves Pokémon information using an external API and presents it in an easy-to-navigate format.
                 </p>
+                <p class="project-description">
+                    Users can search for Pokémon, explore different types, and open detailed profiles containing information such as statistics, abilities, and characteristics. The project demonstrates API integration, dynamic data rendering, responsive UI development, and interactive filtering.
+                </p>
+                <div class="project-features">
+                    <h4 class="features-title">Features</h4>
+                    <ul class="features-list">
+                        <li>Pokémon search</li>
+                        <li>Pokémon type filtering</li>
+                        <li>Detailed Pokémon profiles</li>
+                        <li>Pokémon statistics</li>
+                        <li>Abilities and characteristics</li>
+                        <li>API integration</li>
+                        <li>Dynamic data rendering</li>
+                        <li>Interactive cards</li>
+                        <li>Responsive design</li>
+                    </ul>
+                </div>
                 <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Random Module</span>
-                    <span class="tech-tag">User Input</span>
-                    <span class="tech-tag">Loops</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">JavaScript/TypeScript</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/number_guessing_game.py" class="project-link">Live Demo</a>
-                    <a href="https://github.com/ASTA91-GIT/Number_guessing_game" class="project-link secondary">View Code</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT" class="project-link secondary" target="_blank">View Code</a>
                 </div>
             </div>
         </div>
 
-        <div class="project-card" data-category="mobile">
+        <!-- Project 5: ZeroLatencyWealth -->
+        <div class="project-card" id="project-zerolatencywealth" data-category="design">
             <div class="project-image">
-                <i class="fas fa-calculator"></i>
+                <i class="fas fa-chart-line"></i>
             </div>
             <div class="project-content">
-                <h3 class="project-title">C Calculator</h3>
+                <h3 class="project-title">ZeroLatencyWealth</h3>
+                <p class="project-subtitle">AI-Powered Financial Intelligence Platform</p>
                 <p class="project-description">
-                    A basic calculator program written in C language with 
-                    arithmetic operations and error handling.
+                    ZeroLatencyWealth is an AI-powered financial intelligence web application developed as part of the HackOnTrack hackathon by Team ZeroLatency. The platform is designed to make financial information easier to understand by combining structured financial data, intelligent analysis, interactive dashboards, and AI-powered insights.
                 </p>
-                <div class="project-tech">
-                    <span class="tech-tag">C Programming</span>
-                    <span class="tech-tag">Functions</span>
-                    <span class="tech-tag">Switch Case</span>
-                    <span class="tech-tag">Input/Output</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/simple_calculator.c" class="project-link">Live Demo</a>
-                    <a href="https://github.com/ASTA91-GIT/calculator-using-c" class="project-link secondary">View Code</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Python Projects -->
-        <div class="project-card" data-category="design">
-            <div class="project-image">
-                <i class="fas fa-list-check"></i>
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">Todo List Manager</h3>
                 <p class="project-description">
-                    A comprehensive Python todo list application with task management, 
-                    priority levels, and data persistence using JSON.
+                    The application focuses on transforming complex financial information into clear and actionable insights through data visualization and intelligent analysis. Its interface provides users with a centralized environment for exploring financial information and understanding important trends and metrics.
                 </p>
+                <div class="project-features">
+                    <h4 class="features-title">Features</h4>
+                    <ul class="features-list">
+                        <li>AI-powered financial insights</li>
+                        <li>Financial data analysis</li>
+                        <li>Interactive financial dashboards</li>
+                        <li>Data visualization</li>
+                        <li>Intelligent analysis</li>
+                        <li>Structured financial information</li>
+                        <li>Financial trends and metrics</li>
+                        <li>Responsive web interface</li>
+                        <li>Hackathon-focused financial solution</li>
+                    </ul>
+                </div>
                 <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
                     <span class="tech-tag">Python</span>
-                    <span class="tech-tag">JSON</span>
-                    <span class="tech-tag">File I/O</span>
-                    <span class="tech-tag">OOP</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">APIs</span>
+                    <span class="tech-tag">Data Visualization</span>
                 </div>
                 <div class="project-links">
-                    <a href="https://github.com/ASTA91-GIT/portfolio/blob/main/projects/todo_list.py" class="project-link">Live demo</a>
-                    <a href="https://github.com/ASTA91-GIT/todolist-using-python" class="project-link secondary">View code</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card" data-category="design">
-            <div class="project-image">
-                <i class="fas fa-code"></i>
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">Learning Projects</h3>
-                <p class="project-description">
-                    Various small projects created while learning programming fundamentals 
-                    including basic algorithms and problem-solving exercises.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">C Programming</span>
-                    <span class="tech-tag">Algorithms</span>
-                    <span class="tech-tag">Problem Solving</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/ASTA91-GIT" class="project-link">GitHub</a>
-                    <a href="https://github.com/ASTA91-GIT/Portfolio" class="project-link secondary">Portfolio Projects</a>
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="https://github.com/ASTA91-GIT" class="project-link secondary" target="_blank">View Code</a>
                 </div>
             </div>
         </div>

@@ -179,6 +179,36 @@
             box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
         }
 
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-status {
+            padding: 1.2rem 1.6rem;
+            border-radius: 1rem;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .form-status.success {
+            background: rgba(0, 200, 83, 0.15);
+            color: #00e676;
+            border: 1px solid #00c853;
+        }
+
+        .form-status.error {
+            background: rgba(255, 0, 0, 0.15);
+            color: #ff5252;
+            border: 1px solid red;
+        }
+
         .social-section {
             padding: 6rem 9%;
             background: #111;
@@ -228,47 +258,72 @@
             color: red;
         }
 
-        .map-section {
-            padding: 6rem 9%;
+        /* Location Section */
+        .location-section {
+            padding: 5rem 9%;
             background: #000;
             text-align: center;
         }
 
-        .map-container {
+        .location-card-container {
+            max-width: 650px;
+            margin: 3rem auto 0;
+        }
+
+        .location-info-card {
             background: #111;
-            padding: 3rem;
+            padding: 3.5rem 3rem;
             border-radius: 1.5rem;
             border: 1px solid #333;
-            margin-top: 4rem;
+            transition: all 0.3s ease;
         }
 
-        .map-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #333, #666);
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .location-info-card:hover {
+            border-color: red;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.2);
+        }
+
+        .location-card-icon {
+            font-size: 3.6rem;
+            color: red;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-card-name {
+            font-size: 2.4rem;
+            color: white;
+            margin-bottom: 0.8rem;
+        }
+
+        .location-card-place {
+            font-size: 1.6rem;
+            color: red;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .location-card-note {
+            font-size: 1.4rem;
             color: #ccc;
-            font-size: 1.8rem;
-            position: relative;
-            overflow: hidden;
+            line-height: 1.6;
         }
 
-        .map-placeholder::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,0,0,0.1), transparent);
-            transition: left 0.5s ease;
+        body.light-mode .location-section {
+            background: white;
         }
 
-        .map-container:hover .map-placeholder::before {
-            left: 100%;
+        body.light-mode .location-info-card {
+            background: #f9f9f9;
+            border-color: #ddd;
+        }
+
+        body.light-mode .location-card-name {
+            color: #111;
+        }
+
+        body.light-mode .location-card-note {
+            color: #666;
         }
 
         @keyframes fadeInUp {
@@ -334,13 +389,17 @@
             color: #666;
         }
 
-        body.light-mode .map-section {
-            background: white;
+
+        body.light-mode .form-status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #81c784;
         }
 
-        body.light-mode .map-container {
-            background: #f5f5f5;
-            border-color: #ddd;
+        body.light-mode .form-status.error {
+            background: #ffebee;
+            color: #c62828;
+            border-color: #ef9a9a;
         }
 
         /* Responsive Design */
@@ -365,7 +424,7 @@
         <a href="index.html" class="logo">ASTA</a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="portfolio.html">Portfolio</a>
+            <a href="index.html">Portfolio</a>
             <a href="about.html">About</a>
             <a href="projects.html">Projects</a>
             <a href="contact.html" class="active">Contact</a>
@@ -397,7 +456,7 @@
                     </div>
                     <div class="contact-details">
                         <h4>Email</h4>
-                        <p>your.email@gmail.com</p>
+                        <p>ramkhandekar899@gmail.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -406,7 +465,7 @@
                     </div>
                     <div class="contact-details">
                         <h4>Phone</h4>
-                        <p>+91 98765 43210</p>
+                        <p>+91 8355941700</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -415,7 +474,7 @@
                     </div>
                     <div class="contact-details">
                         <h4>Location</h4>
-                        <p>Mumbai, Maharashtra, India</p>
+                        <p>Titwala, Maharashtra, India</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -431,7 +490,12 @@
 
             <div class="contact-form">
                 <h3>Send Message</h3>
-                <form id="contactForm">
+                <form id="contactForm" novalidate>
+                    <!-- Honeypot anti-spam protection -->
+                    <div style="display: none !important;" aria-hidden="true">
+                        <label for="hp_field">Leave this empty</label>
+                        <input type="text" id="hp_field" name="hp_field" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required>
@@ -448,9 +512,10 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">
+                    <button type="submit" class="submit-btn" id="submitBtn">
                         <i class="fas fa-paper-plane"></i> Send Message
                     </button>
+                    <div id="formStatus" class="form-status" style="display: none;" role="alert"></div>
                 </form>
             </div>
         </div>
@@ -501,15 +566,19 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section">
+    <!-- Location / Find Me Section -->
+    <section class="location-section">
         <h2 style="font-size: 4rem; margin-bottom: 2rem; color: white;">
             Find <span style="color: red;">Me</span>
         </h2>
-        <div class="map-container">
-            <div class="map-placeholder">
-                <i class="fas fa-map-marked-alt" style="font-size: 4rem; margin-right: 1rem;"></i>
-                Interactive Map Coming Soon
+        <div class="location-card-container">
+            <div class="location-info-card">
+                <div class="location-card-icon">
+                    <i class="fas fa-location-dot"></i>
+                </div>
+                <h3 class="location-card-name">Ram Khandekar</h3>
+                <p class="location-card-place">Titwala, Maharashtra, India</p>
+                <p class="location-card-note">Available for remote collaborations and engineering opportunities.</p>
             </div>
         </div>
     </section>
@@ -535,6 +604,10 @@
         </p>
     </footer>
 
+    <!-- EmailJS Browser SDK & Configuration -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="emailjs.config.js"></script>
+
     <script>
         // Theme Toggle Functionality
         const toggleBtn = document.getElementById("theme-toggle");
@@ -547,46 +620,146 @@
             icon.classList.toggle("fa-sun");
         });
 
-        // Contact Form Handling
+        // Contact Form Handling with EmailJS
         const contactForm = document.getElementById("contactForm");
+        const formStatus = document.getElementById("formStatus");
+        const submitBtn = document.getElementById("submitBtn");
+        let isSubmitting = false;
 
-        contactForm.addEventListener("submit", function(e) {
+        function showStatus(message, type) {
+            if (!formStatus) return;
+            formStatus.textContent = message;
+            formStatus.className = `form-status ${type}`;
+            formStatus.style.display = "block";
+        }
+
+        function hideStatus() {
+            if (!formStatus) return;
+            formStatus.style.display = "none";
+            formStatus.textContent = "";
+            formStatus.className = "form-status";
+        }
+
+        // EmailJS Configuration & Initialization
+        // Set your credentials here or in emailjs.config.js
+        const EMAILJS_CONFIG = window.EMAILJS_CONFIG || {
+            SERVICE_ID: "service_4b1tr4j",
+            TEMPLATE_ID: "template_krcb8nh",
+            PUBLIC_KEY: "llGldfzYtP5pSgUUy"
+        };
+
+        // Official browser SDK initialization
+        if (typeof emailjs !== "undefined" && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+            try {
+                emailjs.init({
+                    publicKey: EMAILJS_CONFIG.PUBLIC_KEY
+                });
+                console.log("[EmailJS] Initialized successfully.");
+            } catch (err) {
+                console.error("[EmailJS] Initialization error:", err);
+            }
+        }
+
+        contactForm.addEventListener("submit", async function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get("name");
-            const email = formData.get("email");
-            const subject = formData.get("subject");
-            const message = formData.get("message");
+            hideStatus();
 
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                alert("Please fill in all fields");
+            // Prevent duplicate submissions
+            if (isSubmitting) return;
+
+            // Anti-Spam Honeypot check
+            const hpField = document.getElementById("hp_field");
+            if (hpField && hpField.value.trim() !== "") {
+                console.warn("[Anti-Spam] Bot submission blocked.");
+                showStatus("Message sent successfully!", "success");
+                contactForm.reset();
                 return;
             }
 
-            // Email validation
+            // Extract and sanitize inputs
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const subjectInput = document.getElementById("subject");
+            const messageInput = document.getElementById("message");
+
+            const name = nameInput ? nameInput.value.trim() : "";
+            const email = emailInput ? emailInput.value.trim() : "";
+            const subject = subjectInput ? subjectInput.value.trim() : "";
+            const message = messageInput ? messageInput.value.trim() : "";
+
+            // Validation 1: Check required fields
+            if (!name || !email || !subject || !message) {
+                showStatus("Please fill in all required fields.", "error");
+                return;
+            }
+
+            // Validation 2: Check email format
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address");
+                showStatus("Please enter a valid email address.", "error");
                 return;
             }
 
-            // Simulate form submission
-            const submitBtn = this.querySelector(".submit-btn");
-            const originalText = submitBtn.innerHTML;
-            
+            // UI: Set Sending state
+            isSubmitting = true;
+            const originalButtonHtml = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
-                alert("Thank you for your message! I'll get back to you soon.");
-                this.reset();
-                submitBtn.innerHTML = originalText;
+            const serviceId = EMAILJS_CONFIG.SERVICE_ID;
+            const templateId = EMAILJS_CONFIG.TEMPLATE_ID;
+            const publicKey = EMAILJS_CONFIG.PUBLIC_KEY;
+
+            const isConfigured = serviceId && templateId && publicKey &&
+                serviceId !== "YOUR_SERVICE_ID" &&
+                templateId !== "YOUR_TEMPLATE_ID" &&
+                publicKey !== "YOUR_PUBLIC_KEY";
+
+            // If credentials are still placeholders, provide diagnostic guidance
+            if (!isConfigured) {
+                console.warn("[EmailJS] Credentials not configured! Please replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY with your live EmailJS account credentials.");
+                setTimeout(() => {
+                    showStatus("Email service not configured. Please add your EmailJS Service ID, Template ID, and Public Key.", "error");
+                    submitBtn.innerHTML = originalButtonHtml;
+                    submitBtn.disabled = false;
+                    isSubmitting = false;
+                }, 600);
+                return;
+            }
+
+            // Map all standard EmailJS template variable aliases so templates with {{name}}, {{from_name}}, {{reply_to}}, etc. all work seamlessly
+            const templateParams = {
+                name: name,
+                from_name: name,
+                user_name: name,
+                email: email,
+                from_email: email,
+                user_email: email,
+                reply_to: email,
+                subject: subject,
+                message: message
+            };
+
+            try {
+                // Ensure initialized with public key
+                emailjs.init({
+                    publicKey: publicKey
+                });
+
+                const response = await emailjs.send(serviceId, templateId, templateParams);
+                console.log("[EmailJS] Message sent successfully:", response);
+
+                showStatus("Message sent successfully!", "success");
+                contactForm.reset();
+            } catch (error) {
+                console.error("[EmailJS] Send failed:", error);
+                const errMsg = (error && error.text) ? error.text : "Something went wrong. Please try again.";
+                showStatus(errMsg, "error");
+            } finally {
+                submitBtn.innerHTML = originalButtonHtml;
                 submitBtn.disabled = false;
-            }, 2000);
+                isSubmitting = false;
+            }
         });
 
         // Add scroll animation for elements
